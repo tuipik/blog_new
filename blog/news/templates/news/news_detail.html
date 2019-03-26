@@ -1,0 +1,73 @@
+{% extends 'news/base_blog.html' %}
+
+{% block desk %} {{ news.description }} {% endblock desk %}
+{% block keywords %} {{ news.keywords }} {% endblock keywords %}
+
+{% block title %}
+    {{ new.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="card">
+            <h6 class="card-header">{{ new.category|default_if_none:'Загальна категорія' }}</h6>
+            <div class="card-body">
+                {% if new.image %}
+                    <div align="center">
+                        <img src="{{ MEDIA_URL }}{{ new.image.url }}"
+                             class="img-fluid" alt="Responsive image">
+                    </div><br>
+                {% endif %}
+                <h5 class="card-title"><b>{{ new.title }}</b></h5>
+                <p class="card-text">{{ new.text|safe }}</p><br/><br/>
+                <p style="font-size:14px" align="right">{{ new.created }}</p>
+                <br/>
+                <p style="font-size:14px">Тегі - {% for tag in new.tags.all %}
+                    {{ tag.title }}
+                {% endfor %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <div class="card mt-5">
+            <div class="card-body">
+                {% if comments %}
+                    Коментарі
+                {% else %}
+                    Коментарів немає
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    {% for comment in comments %}
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="card mt-2">
+                <h6 class="card-header">
+                    <small><b>{{ comment.user }}</b></small>
+                </h6>
+                <div class="card-body">
+                    <p class="card-text">
+                        <small>{{ comment.text|safe }}</small>
+                    </p>
+                    <p style="font-size:9px"
+                       align="right">{{ comment.created }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}<br> <br>
+
+
+{#    <form action="" method="post">#}
+{#        {% csrf_token %}#}
+{#        <div class="form-group">#}
+{#            <label for="id_text">Написати коментар</label>#}
+{#            <textarea class="form-control" name="text" id="id_text"#}
+{#                      cols="10" rows="4"></textarea>#}
+{#        </div>#}
+{#        <button type="submit" class="btn btn-primary">Надіслати</button>#}
+{#    </form> <br> <br>#}
+
+
+{% endblock %}

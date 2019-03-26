@@ -1,0 +1,32 @@
+{% extends 'news/base_blog.html' %}
+
+{% block desk %} {{ news.description }} {% endblock desk %}
+{% block keywords %} {{ news.keywords }} {% endblock keywords %}
+
+{% block title %}
+    Результати пошуку
+{% endblock %}
+
+{% block content %}
+    <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h4>Знайдено результатів: {{ founded_news.count }}</h4>
+            </div>
+    </div>
+
+    {% for new in founded_news %}
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="card">
+                <h6 class="card-header">{{ new.category|default_if_none:'Загальна категорія' }}</h6>
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{ new.title }}</b></h5>
+                    <p class="card-text">{{ new.text|truncatechars:350|safe }}</p>
+                    <a href="{% url 'news_detail' pk=new.id %}"
+                       class="btn btn-dark" style="float:right;">Читати</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

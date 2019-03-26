@@ -1,0 +1,39 @@
+{% extends 'news/base_blog.html' %}
+
+{% block desk %} {{ news.description }} {% endblock desk %}
+{% block keywords %} {{ news.keywords }} {% endblock keywords %}
+
+{% block title %}
+    {{ tag.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <h4>Методички з тегом {{ tag.title|title }}:</h4>
+            </div>
+    </div>
+
+
+{#    <div class="shadow p-3 mb-5 bg-white rounded">#}
+{#        <div class="card">#}
+{#            <h6 class="card-header">{{ new.category|default_if_none:'Загальна категорія' }}</h6>#}
+{#            <div class="card-body">#}
+{#                {% if new.image %}#}
+{#                    <div align="center">#}
+{#                        <img src="{{ MEDIA_URL }}{{ new.image.url }}"#}
+{#                             class="img-fluid" alt="Responsive image">#}
+{#                    </div><br>#}
+{#                {% endif %}#}
+{#                <h5 class="card-title"><b>{{ new.title }}</b></h5>#}
+{#                <p class="card-text">{{ new.text|safe }}</p><br/><br/>#}
+{#                <p style="font-size:14px" align="right">{{ new.created }}</p>#}
+{#                <br/>#}
+{#                <p style="font-size:14px">Тегі - {% for tag in new.tags.all %}#}
+{#                    {{ tag.title }}#}
+{#                {% endfor %}</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock %}
