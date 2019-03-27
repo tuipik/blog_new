@@ -24,6 +24,7 @@ class News(models.Model):
     category = models.ForeignKey("Category", on_delete=models.SET_NULL,
                                  verbose_name='Категорія',
                                  blank=True, null=True, related_name="category")
+    published = models.BooleanField(default=True, verbose_name='Опубліковано')
 
     class Meta:
         verbose_name = 'Стаття'

@@ -9,7 +9,7 @@ from django.views import View
 
 
 def news_list(request):
-    news = News.objects.all()
+    news = News.objects.filter(published=True)
     return render(request, 'news/news_list.html', {'news': news})
 
 
