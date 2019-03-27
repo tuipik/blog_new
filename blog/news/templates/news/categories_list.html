@@ -1,22 +1,23 @@
 {% extends 'news/base_blog.html' %}
 
 {% block title %}
-    Tags list
+    Категорії
 {% endblock %}
 
 {% block content %}
     <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
-            <h4>Методички з тегами:</h4>
+            <h4>Методички в категоріях:</h4>
         </div>
     </div>
     <div class="shadow p-3 mb-5 bg-white rounded">
-        {% for tag in tags %}
+        {% for category in categories %}
 
             <div class="card-body">
-                <h5 class="card-title"><b><a href="{% url 'tag_detail' pk=tag.id %}">{{ tag.title }}</a></b></h5>
+                <h5 class="card-title"><b><a href="{% url 'category_detail' pk=category.id %}">{{ category.title }}</a></b></h5>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
 

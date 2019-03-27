@@ -4,17 +4,16 @@
 {% block keywords %} {{ news.keywords }} {% endblock keywords %}
 
 {% block title %}
-    Результати пошуку
+    {{ tag.title }} - {{ block.super }}
 {% endblock %}
 
 {% block content %}
     <div class="shadow p-3 mb-5 bg-white rounded">
-            <div class="card-body">
-                <h4>За запитом знайдено результатів: {{ founded_news.count }}</h4>
-            </div>
+        <div class="card-body">
+            <h4>Методички з тегом "{{ tag.title|title }}":</h4>
+        </div>
     </div>
-
-    {% for new in founded_news %}
+    {% for new in tag.tags.all %}
         <div class="shadow p-3 mb-5 bg-white rounded">
             <div class="card">
                 <h6 class="card-header">{{ new.category|default_if_none:'Загальна категорія' }}</h6>
@@ -27,6 +26,5 @@
             </div>
         </div>
     {% endfor %}
-
 
 {% endblock %}

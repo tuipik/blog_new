@@ -20,10 +20,10 @@ class News(models.Model):
                                    blank=True)
     keywords = models.CharField(verbose_name='Ключові слова', max_length=350,
                                 blank=True)
-    tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
+    tags = models.ManyToManyField('Tag', blank=True, related_name='tags')
     category = models.ForeignKey("Category", on_delete=models.SET_NULL,
                                  verbose_name='Категорія',
-                                 blank=True, null=True)
+                                 blank=True, null=True, related_name="category")
 
     class Meta:
         verbose_name = 'Стаття'
@@ -36,6 +36,7 @@ class News(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=100, verbose_name='Назва')
+
     class Meta:
         verbose_name = 'Категорія'
         verbose_name_plural = 'Категорії'
