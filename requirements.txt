@@ -1,0 +1,6 @@
+Django==2.1.7
+django-suit==0.2.26
+django-summernote==0.8.11.4
+Pillow==5.4.1
+pkg-resources
+pytz==2018.9
